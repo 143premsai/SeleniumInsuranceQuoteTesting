@@ -358,6 +358,94 @@ namespace InsuranceQuoteSETest
             driver.FindElement(By.Id("btnSubmit")).Click();
             Assert.That(driver.FindElement(By.Id("postalCode-error")).Text, Is.EqualTo("Postal Code must follow the pattern A1A 1A1"));
         }
+        
+        [Test]
+        public void omitAccidents_InputAge37Exp8_OuputError()
+        {
+            driver.Navigate().GoToUrl("http://localhost/prog8170a04/getQuote.html");
+            driver.Manage().Window.Size = new System.Drawing.Size(1060, 812);
+            driver.FindElement(By.Id("firstName")).Click();
+            driver.FindElement(By.Id("firstName")).SendKeys("Prabhjot");
+            driver.FindElement(By.Id("lastName")).SendKeys("kaur");
+            driver.FindElement(By.Id("address")).SendKeys("N Park Dr");
+            driver.FindElement(By.Id("city")).SendKeys("Brampton");
+            driver.FindElement(By.Id("postalCode")).Click();
+            driver.FindElement(By.Id("postalCode")).SendKeys("L6S 5X4");
+            driver.FindElement(By.Id("phone")).Click();
+            driver.FindElement(By.Id("phone")).SendKeys("226-122-2313");
+            driver.FindElement(By.Id("email")).Click();
+            driver.FindElement(By.Id("email")).SendKeys("prabhjot@test.com");
+            driver.FindElement(By.Id("age")).SendKeys("37");
+            driver.FindElement(By.Id("experience")).SendKeys("8");
+            driver.FindElement(By.Id("btnSubmit")).Click();
+            Assert.That(driver.FindElement(By.Id("accidents-error")).Text, Is.EqualTo("Number of accidents is required"));
+        }
+        [Test]
+        public void omitAge_InputExp5Accidents0_OuputError()
+        {
+            driver.Navigate().GoToUrl("http://localhost/prog8170a04/getQuote.html");
+            driver.Manage().Window.Size = new System.Drawing.Size(1060, 812);
+            driver.FindElement(By.Id("firstName")).Click();
+            driver.FindElement(By.Id("firstName")).SendKeys("Prabhjot");
+            driver.FindElement(By.Id("lastName")).SendKeys("kaur");
+            driver.FindElement(By.Id("address")).SendKeys("N Park Dr");
+            driver.FindElement(By.Id("city")).SendKeys("Brampton");
+            driver.FindElement(By.Id("postalCode")).Click();
+            driver.FindElement(By.Id("postalCode")).SendKeys("L6S 5X4");
+            driver.FindElement(By.Id("phone")).Click();
+            driver.FindElement(By.Id("phone")).SendKeys("226-122-2313");
+            driver.FindElement(By.Id("email")).Click();
+            driver.FindElement(By.Id("email")).SendKeys("prabhjot@test.com");
+            driver.FindElement(By.Id("experience")).SendKeys("5");
+            driver.FindElement(By.Id("accidents")).SendKeys("0");
+            driver.FindElement(By.Id("btnSubmit")).Click();
+            Assert.That(driver.FindElement(By.Id("age-error")).Text, Is.EqualTo("Age (>=16) is required"));
+        }
+        
+        [Test]
+        public void omitExperience_InputAge45Accidents0_OuputError()
+        {
+            driver.Navigate().GoToUrl("http://localhost/prog8170a04/getQuote.html");
+            driver.Manage().Window.Size = new System.Drawing.Size(1060, 812);
+            driver.FindElement(By.Id("firstName")).Click();
+            driver.FindElement(By.Id("firstName")).SendKeys("Prabhjot");
+            driver.FindElement(By.Id("lastName")).SendKeys("kaur");
+            driver.FindElement(By.Id("address")).SendKeys("N Park Dr");
+            driver.FindElement(By.Id("city")).SendKeys("Brampton");
+            driver.FindElement(By.Id("postalCode")).Click();
+            driver.FindElement(By.Id("postalCode")).SendKeys("L6S 5X4");
+            driver.FindElement(By.Id("phone")).Click();
+            driver.FindElement(By.Id("phone")).SendKeys("226-122-2313");
+            driver.FindElement(By.Id("email")).Click();
+            driver.FindElement(By.Id("email")).SendKeys("prabhjot@test.com");
+            driver.FindElement(By.Id("age")).SendKeys("45");
+            driver.FindElement(By.Id("accidents")).SendKeys("0");
+            driver.FindElement(By.Id("btnSubmit")).Click();
+            Assert.That(driver.FindElement(By.Id("experience-error")).Text, Is.EqualTo("Years of experience is required"));
+        }
+       
+        [Test]
+        public void omitFirstName_InputAge35Exp5Accidents2_OuputError()
+        {
+            driver.Navigate().GoToUrl("http://localhost/prog8170a04/getQuote.html");
+            driver.Manage().Window.Size = new System.Drawing.Size(1060, 812);
+            driver.FindElement(By.Id("firstName")).Click();
+            driver.FindElement(By.Id("lastName")).SendKeys("kaur");
+            driver.FindElement(By.Id("address")).SendKeys("N Park Dr");
+            driver.FindElement(By.Id("city")).SendKeys("Brampton");
+            driver.FindElement(By.Id("postalCode")).Click();
+            driver.FindElement(By.Id("postalCode")).SendKeys("L6S 5X4");
+            driver.FindElement(By.Id("phone")).Click();
+            driver.FindElement(By.Id("phone")).SendKeys("226-122-2313");
+            driver.FindElement(By.Id("email")).Click();
+            driver.FindElement(By.Id("email")).SendKeys("prabhjot@test.com");
+            driver.FindElement(By.Id("age")).Click();
+            driver.FindElement(By.Id("age")).SendKeys("35");
+            driver.FindElement(By.Id("experience")).SendKeys("5");
+            driver.FindElement(By.Id("accidents")).SendKeys("2");
+            driver.FindElement(By.Id("btnSubmit")).Click();
+            Assert.That(driver.FindElement(By.Id("firstName-error")).Text, Is.EqualTo("First Name is required"));
+        }
 
     }
 
