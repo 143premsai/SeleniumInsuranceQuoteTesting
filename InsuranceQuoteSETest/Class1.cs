@@ -334,6 +334,30 @@ namespace InsuranceQuoteSETest
             driver.FindElement(By.Id("btnSubmit")).Click();
             Assert.That(driver.FindElement(By.Id("email-error")).Text, Is.EqualTo("Must be a valid email address"));
         }
+        
+        [Test]
+        public void invalidPostalCode_InputAge35Exp17Accidents1_OuputError()
+        {
+            driver.Navigate().GoToUrl("http://localhost/prog8170a04/getQuote.html");
+            driver.Manage().Window.Size = new System.Drawing.Size(1060, 812);
+            driver.FindElement(By.Id("firstName")).Click();
+            driver.FindElement(By.Id("firstName")).SendKeys("Prabhjot");
+            driver.FindElement(By.Id("lastName")).SendKeys("kaur");
+            driver.FindElement(By.Id("address")).SendKeys("N Park Dr");
+            driver.FindElement(By.Id("city")).SendKeys("Brampton");
+            driver.FindElement(By.Id("postalCode")).Click();
+            driver.FindElement(By.Id("postalCode")).SendKeys("L6S5X4");
+            driver.FindElement(By.Id("phone")).Click();
+            driver.FindElement(By.Id("phone")).SendKeys("226-122-2313");
+            driver.FindElement(By.Id("email")).Click();
+            driver.FindElement(By.Id("email")).SendKeys("prabhjot@test.com");
+            driver.FindElement(By.Id("age")).Click();
+            driver.FindElement(By.Id("age")).SendKeys("28");
+            driver.FindElement(By.Id("experience")).SendKeys("3");
+            driver.FindElement(By.Id("accidents")).SendKeys("0");
+            driver.FindElement(By.Id("btnSubmit")).Click();
+            Assert.That(driver.FindElement(By.Id("postalCode-error")).Text, Is.EqualTo("Postal Code must follow the pattern A1A 1A1"));
+        }
 
     }
 
